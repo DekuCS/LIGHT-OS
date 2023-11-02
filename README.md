@@ -10,11 +10,9 @@
 <h4 align="center">An open source and lightweight modification for Windows 10, designed for best performance and latency and also for more privacy and security.</h4>
 
 <p align="center">
-  <a href="https://atlasos.net">Website</a>
   •
-  <a href="https://docs.atlasos.net">Documentation</a>
+  <a href="[https://docs.atlasos.net](https://github.com/DekuCS/LIGHT-OS/tree/main/docs)">Documentation</a>
   •
-  <a href="https://discord.atlasos.net" target="_blank">Discord</a>
+  <a href="[https://discord.gg/WXVGWEkrE9]" target="_blank">Discord</a>
   •
-  <a href="https://forum.atlasos.net">Forum</a>
 </p>
