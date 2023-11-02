@@ -1,144 +1,34 @@
-# Post-Install Instructions
-
-> [!IMPORTANT]
-> This section is not designed to be followed on existing Windows installations. At this stage, you should be booted into the ISO that you created with the steps in [docs/pre-install.md](pre-install.md). If you have no idea what this means, then go back to the pre-install instructions in the document linked above and follow the instructions from start to finish.
-
-## OOBE Setup
-
-- Windows Server will force you to enter a complex password which we will remove in a few steps later
-
-- If you are configuring Windows 11, press ``Shift+F10`` to open CMD and execute ``oobe\BypassNRO.cmd``. This will allow us to continue without an internet connection as demonstrated in the video examples below.
-
-- See [media/oobe-windows7-example.mp4](https://raw.githubusercontent.com/amitxv/PC-Tuning/main/media/oobe-windows7-example.mp4)
-
-- See [media/oobe-windows8-example.mp4](https://raw.githubusercontent.com/amitxv/PC-Tuning/main/media/oobe-windows8-example.mp4)
-
-- See [media/oobe-windows10+-example.mp4](https://raw.githubusercontent.com/amitxv/PC-Tuning/main/media/oobe-windows10+-example.mp4)
 
 ## Unrestricted PowerShell Execution Policy
 
 This is required to execute the scripts within the repository. Open PowerShell as administrator and enter the command below.
 
 ```powershell
-Set-ExecutionPolicy Unrestricted
+    Set-ExecutionPolicy Unrestricted
+    C:\LIGHTOS\scripts\registry.ps1 -type <import/backup>
 ```
-
-<!-- NOTE TO SELF: Check Windows Defender UI for new options before merging registry files as the UI will become inaccessible -->
-
-## Merge the Registry Files
-
-<details>
-<br>
-<summary>What do the registry files do and modify?</summary>
-
-|Modification|Justification|
-|---|---|
-|Disable Retrieval of Online Tips and Help In The Immersive Control Panel|Telemetry|
-|Disable Sticky Keys|Intrusive|
-|Disable Search The Web or Display Web Results In Search|Telemetry|
-|Disable Transparency|[Wastes resources](/media/transparency-effects-benchmark.png)|
-|Disable Corner Navigation|Intrusive|
-|Prevent Windows Marking File Attachments With Information About Their Zone of Origin|Intrusive|
-|Disable Windows Defender|Security and performance are generally mutually exclusive|
-|Disable Windows Update|Telemetry, intrusive and installs unwanted security updates along with potentially vulnerable drivers. Security and performance are generally mutually exclusive|
-|Disable Customer Experience Improvement Program|Telemetry|
-|Disable Automatic Maintenance|Intrusive|
-|Remove 3D Objects from Explorer Pane|Intrusive|
-|Disable UAC|Eliminates intrusive UAC prompt but reduces security as all processes are run with Administrator privileges by default|
-|Disable Fast Startup|Interferes with shutting down|
-|Disable Sign-In and Lock Last Interactive User After a Restart|Intrusive|
-|Disable Suggestions In The Search Box and In Search Home|Telemetry and intrusive|
-|Disable Powershell Telemetry|Telemetry|
-|Restore Old Context Menu|Intrusive|
-|Disable Fault Tolerant Heap|Prevents Windows autonomously applying mitigations to prevent future crashes on a per-application basis|
-|Disable GameBarPresenceWriter|Runs constantly and wastes resources despite disabling Game Bar|
-|Disable Telemetry|Telemetry|
-|Disable Notifications Network Usage|Polls constantly and wastes resources|
-|Reserve 10% of CPU Resources for Low-Priority Tasks Instead of The Default 20%|On an optimized system with few background tasks, it is desirable to allocate most of the CPU time to the foreground process|
-|Disable Your *PC Is Out of Support* Message|Intrusive|
-|Disable Search Indexing|Runs constantly and wastes resources|
-|Enable The Legacy Photo Viewer|Alternative option for viewing photos as the Windows Photos app is removed in the Appx removal step|
-|Disable Hibernation|Eliminates the need for a hibernation file. It is recommended to shut down instead|
-|Disable Remote Assistance|Security risk|
-|Show File Extensions|Security risk|
-|Allocate Processor Resources Primarily To Programs|On client editions of Windows, this has no effect but is changed to ensure consistency between all editions including Windows Server|
-|Disable Program Compatibility Assistant|Prevent Windows applying changes anonymously after running troubleshooters|
-|Disable Pointer Acceleration|Ensures one-to-one mouse response for games that do not subscribe to raw input events|
-|Disable Windows Error Reporting|Telemetry|
-|Disable Typing Insights|Telemetry|
-|Do Not Let Apps Run In the Background|Disabled via policies as the option is not available in the interface on Windows 11|
-
-Changes made with ``-ui_cleanup``:
-
-- Launch File Explorer To This PC
-- Turn Off Display of Recent Search Entries In the File Explorer Search Box
-- Remove Pin To Quick Access In Context Menu
-- Disable Recent Items and Frequent Places In File Explorer and Quick Access
-- Hide Recent Folders In Quick Access
-- Clear History of Recently Opened Documents On Exit
-- Hide Quick Access from File Explorer
-- Hide Frequent Folders In Quick Access
-
-</details>
-
-- Open PowerShell as administrator and enter the command below. Replace ``<option>`` with the Windows version you are configuring such as ``7``, ``8``, ``10`` or ``11``.
-
-    ```powershell
-    C:\bin\scripts\apply-registry.ps1 -winver <option>
-    ```
-
-- Append the ``-ui_cleanup`` argument to clean up the interface further
-
-- If the command fails, try to disable tamper protection in Windows Defender (Windows 10 1909+) or reboot (or both) then try and execute the command again
-
-- Ensure that the script prints a "successfully applied" message to the console, if it does not then the registry files were not successfully merged
-
-- After and only after a restart, you can establish an internet connection as the Windows update policies will take effect
-
 ## Visual Cleanup
 
 Disable features on the taskbar, unpin shortcuts and tiles from the taskbar and start menu.
 
-- See [media/visual-cleanup-windows7-example.mp4](https://raw.githubusercontent.com/amitxv/PC-Tuning/main/media/visual-cleanup-windows7-example.mp4)
-
-- See [media/visual-cleanup-windows8-example.mp4](https://raw.githubusercontent.com/amitxv/PC-Tuning/main/media/visual-cleanup-windows8-example.mp4)
-
-- See [media/visual-cleanup-windows10+-example.mp4](https://raw.githubusercontent.com/amitxv/PC-Tuning/main/media/visual-cleanup-windows10+-example.mp4)
-
 ## Install Drivers
-
-- Chipset drivers are typically not required but if they are, their functionality can most likely be replicated manually with the advantage being no overhead from the drivers constantly running and forcing unnecessary context switches. An example of this would be the AMD chipset drivers used to manage per-CPU load for scheduling threads on the [V-Cache CCX/CCD](https://hwbusters.com/cpu/amd-ryzen-9-7950x3d-cpu-review-performance-thermals-power-analysis/2) which can easily be achieved manually as described in the [Per-CPU Scheduling](#per-cpu-scheduling) section
-
-    - See [Chipset Device "Drivers" (= INF files)](https://winraid.level1techs.com/t/intel-chipset-device-drivers-inf-files/30920)
-
 - GPU drivers will be installed in a later step so do not install them at this stage
-
 - You can find drivers by searching for drivers that are compatible with your device's HWID. See [media/device-hwid-example.png](/media/device-hwid-example.png) in regard to finding your HWID in Device Manager for a given device
 
 - Try to obtain the driver in its INF form so that it can be installed in Device Manager as executable installers usually install other bloatware along with the driver itself. Most of the time, you can extract the installer's executable with 7-Zip to obtain the driver
 
-- It is recommended to update and install the following:
-
     - Network Interface Controller
 
-        - If you do not have internet access at this stage, you will need to download your network interface controller drivers from another device or dual-boot as they may not be packaged at all in some versions of Windows
+    - USB
 
-    - [USB](https://winraid.level1techs.com/t/usb-3-0-3-1-drivers-original-and-modded/30871) and [NVMe](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) (both should already be installed if configuring Windows 7)
-
-        - See [Microsoft USB driver latency penalty](/docs/research.md#microsoft-usb-driver-latency-penalty)
-
-    - [SATA](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) (required on Windows 7 as enabling MSI on the stock SATA driver will result in a BSOD)
+    - SATA
 
 ## Time, Language and Region
 
 - Configure settings by typing ``intl.cpl`` and ``timedate.cpl`` in ``Win+R``
 
-- Windows 10+ Only
-
-    - Configure settings in ``Time & Language`` by pressing ``Win+I``
-
-        - If you intend to exclusively use one language and keyboard layout, ensure that is the case in actuality so that you don't need to toggle the language bar hotkeys which can become intrusive otherwise
-
+- Configure settings in ``Time & Language`` by pressing ``Win+I``
+  
 ## Activate Windows
 
 Use the commands below to activate Windows using your license key if you do not have one linked to your HWID. Ensure that the activation process was successful by verifying the activation status in computer properties. Open CMD as administrator and enter the commands below.
@@ -151,27 +41,13 @@ slmgr /ipk <license key>
 slmgr /ato
 ```
 
-## Configure a [Web Browser](https://privacytests.org)
-
-A standard Firefox installation is recommended. Open PowerShell and enter the command below. If you are having problems with the hash check, append ``-skip_hash_check`` to the end of the command. 115.0 is the last version to support Windows 8 and below so ``-version 115.0`` may be required. Using an outdated browser is not recommended.
+## Configure a [Web Browser]
 
 ```powershell
 C:\bin\scripts\install-firefox.ps1
 ```
 
-- Install [language dictionaries](https://addons.mozilla.org/en-GB/firefox/language-tools) for spell-checking
-
-- Optionally configure and clean up the interface further in ``Menu Settings -> More tools -> Customize toolbar`` then skim through ``about:preferences``. The [Arkenfox user.js](https://github.com/arkenfox/user.js) can also be imported, see the [wiki](https://github.com/arkenfox/user.js/wiki)
-
-- A less privacy-focused alternative for the Arkenfox user.js, [Betterfox](https://github.com/yokoffing/Betterfox) is also available for users who don't wish to spend time debugging potential issues with Arkenfox
-
-- Ensure to configure file extensions and the default browser in Windows settings
-
-- As updates are disabled, auto-update capabilities are not available. You can create a shortcut to the script by typing ``shell:startup`` in ``Win+R`` to check for updates when Windows starts
-
 ## Disable Residual Scheduled Tasks
-
-Open PowerShell and enter the command below. Ignore any errors.
 
 ```powershell
 C:\bin\scripts\disable-scheduled-tasks.ps1
@@ -185,31 +61,13 @@ C:\bin\scripts\disable-scheduled-tasks.ps1
 
         ```bat
         net accounts /maxpwage:unlimited
-        ```
-
-    - Clean the WinSxS folder
-
-        ```bat
         DISM /Online /Cleanup-Image /StartComponentCleanup /ResetBase
-        ```
-
-    - Disable reserved storage (Windows 10 1903+)
-
-        ```bat
         DISM /Online /Set-ReservedStorageState /State:Disabled
         ```
 
 - Disable all messages in ``Change Security and Maintenance settings`` by typing ``wscui.cpl`` in ``Win+R``
 
 - Configure the following by typing ``sysdm.cpl`` in ``Win+R``:
-
-    - ``Advanced -> Performance -> Settings`` - configure ``Adjust for best performance`` and preferably disable the paging file for all drives to avoid unnecessary I/O unless you run out of RAM
-
-    - ``System Protection`` - disable and delete system restore points. It has been proven to be very unreliable
-
-- Allow users full control of the ``C:\`` directory to resolve xperf ETL processing
-
-    - See [media/full-control-example.png](/media/full-control-example.png), continue and ignore errors
 
 - If an HDD isn't present in the system then Superfetch/Prefetch can be disabled with the command below
 
