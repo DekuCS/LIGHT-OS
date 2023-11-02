@@ -13,6 +13,7 @@
 </p>
 
 ## 👀 **What is LIGHTOS?**
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Gruppo&pause=1000&color=F7CCF7&center=true&random=false&width=900&lines=LIGHTOS+%E2%80%A2+BUILD+1.0+(public))](https://git.io/typing-svg)
+
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Gruppo&pause=1000&color=F144F7&center=true&random=false&width=1100&lines=LIGHTOS+%E2%80%A2+BUILD+1.0+(public))](https://git.io/typing-svg)
 
 LIGHTOS is a modification for Windows 10 which will give you the best performance & latency for gaming possible. LIGHTOS is also already full debloated and is using much less storage than stock windows. It may reduce your network latency and input lag also.
