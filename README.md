@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="http://atlasos.net"><img src="https://raw.githubusercontent.com/DekuCS/LIGHT-OS/main/LIGHTOS/img/banner.png?token=GHSAT0AAAAAACJZIJRL34J5TWM5CJPPSAUUZKECSJQ" alt="LIGHTOS" width="900" style="border-radius: 30px"></a>
+  <a href="http://atlasos.net"><img src="https://raw.githubusercontent.com/DekuCS/LIGHT-OS/main/LIGHTOS/img/banner.png?token=GHSAT0AAAAAACJZIJRLP2AJRWSGMH6RUWIGZKEFETQ" alt="LIGHTOS" width="900" style="border-radius: 30px"></a>
 </h1>
 
 <h4 align="center">A free open source and lightweight modification for Windows 10, designed for best performance and latency and also for more privacy and security.</h4>
