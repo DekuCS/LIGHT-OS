@@ -11,3 +11,7 @@
   <a href="https://discord.gg/WXVGWEkrE9" target="_blank">Discord</a>
   •
 </p>
+
+## 🤔 **What is LIGHTOS?**
+
+LIGHTOS is a modification for Windows 10 which will give you the best performance & latency for gaming possible. LIGHTOS is also already full debloated and is using much less storage than stock windows. It may reduce your network latency and input lag also.
