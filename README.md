@@ -7,7 +7,7 @@
     <img alt="Release" src="https://img.shields.io/github/release/atlas-os/atlas?style=for-the-badge&color=1A91FF" />
     <img alt="Release Downloads" src="https://img.shields.io/github/downloads/Atlas-OS/Atlas/total?style=for-the-badge&logo=github&color=1A91FF" />
   </p>
-<h4 align="center">An open source lightweight modification for Windows 10, designed for best performance and latency and also for more privacy and security.</h4>
+<h4 align="center">An open source and lightweight modification for Windows 10, designed for best performance and latency and also for more privacy and security.</h4>
 
 <p align="center">
   <a href="https://atlasos.net">Website</a>
