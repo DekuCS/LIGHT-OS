@@ -11,8 +11,8 @@
 
 <p align="center">
   •
-  <a href="[https://docs.atlasos.net](https://github.com/DekuCS/LIGHT-OS/tree/main/docs)">Documentation</a>
+  <a href="https://github.com/DekuCS/LIGHT-OS/tree/main/docs">Documentation</a>
   •
-  <a href="https://discord.atlasos.net" target="_blank">Discord</a>
+  <a href="https://discord.gg/WXVGWEkrE9" target="_blank">Discord</a>
   •
 </p>
