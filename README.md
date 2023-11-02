@@ -12,6 +12,8 @@
   •
 </p>
 
+<a href="https://github.com/DekuCS/LIGHT-OS"><img src="https://raw.githubusercontent.com/DekuCS/LIGHT-OS/main/LIGHTOS/img/DOWNLOAD.png?token=GHSAT0AAAAAACJZIJRLXFBCZ4VWOFS7JTS6ZKEF3FA" width=220px height=55px></a>
+
 ## 👀 **What is LIGHTOS?**
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Gruppo&pause=1000&color=F144F7&center=true&random=false&width=1100&lines=LIGHTOS+%E2%80%A2+BUILD+1.0+(public))](https://git.io/typing-svg)
